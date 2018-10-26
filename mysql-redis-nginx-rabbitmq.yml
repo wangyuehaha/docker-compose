@@ -39,4 +39,10 @@ services:
         - 25672:25672
         volumes:
         - /data/rabbitmq-data/:/var/rabbitmq/lib
-            
+    tomcat:
+        image: tomcat
+        ports:
+        - 8080:8080
+        volumes:
+        - /docker/tomcat/webapps:/usr/local/tomcat/webapps
+        - /docker/tomcat/logs:/usr/local/tomcat/logs
