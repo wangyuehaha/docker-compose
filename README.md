@@ -10,3 +10,8 @@ docker-compose.yml仓库
     - docker-compose -f mysql-redis-nginx ps
 - 5.查看对应服务的日志
     - docker-compose -f mysql-redis-nginx-rabbitmq.yml logs 【服务名】
+    
+    
+### windows-mysql-redis-nginx-rabbitmq.yml
+- windows版本的docker下的yml
+- 数据卷映射需要设置
