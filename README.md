@@ -15,3 +15,8 @@ docker-compose.yml仓库
 ### windows-mysql-redis-nginx-rabbitmq.yml
 - windows版本的docker下的yml
 - 数据卷映射需要设置
+
+### wy-cms
+1. cd wy-cms
+2. 构建镜像 docker build -t wy-cms:1.0 .
+3. 启动容器 docker run -d -p 8080:8080 --name wy-cms wy-cms:1.0
