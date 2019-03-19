@@ -19,7 +19,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /f/docker/mongo/db:/data/db
+      - mongodata:/data/db
 
   nginx:
     image: nginx
@@ -47,4 +47,8 @@ services:
     volumes:
       - /f/docker/tomcat/webapps:/usr/local/tomcat/webapps
       - /f/docker/tomcat/logs:/usr/local/tomcat/logs
+
+# 注意windows中mongo的问题
+volumes:
+  mongodata:
 
