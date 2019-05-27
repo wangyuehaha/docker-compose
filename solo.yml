@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+#  mysql:
+#    container_name: mysql
+#    image: mysql:5.5.60
+#    restart: always
+#    volumes:
+#      - ./mysql/data:/var/lib/mysql //mysql的数据文件存放地址
+#      - ./mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf //mysql的配置文件存放地址
+#    ports:
+#      - "6603:3306" //6603代表宿主机端口，3306代编容器的端口
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=adminadmin //mysql的root账号密码
+  solo:
+    container_name: solo
+    image: b3log/solo #直接使用最新版本的solo镜像
+    restart: always
+    ports:
+      - "80:80" #如果要部署到线上的话，请改为"80:80"，同时修改下面的--listen_port=80
+    environment: #此处配置solo跟mysql的连接设置，来源为上面启动的mysql容器，如果要用自己的mysql服务，那么请将mysql的servcie去掉
+      RUNTIME_DB: "MYSQL"
+      JDBC_USERNAME: "root"
+      JDBC_PASSWORD: "wy1015wy"
+      JDBC_DRIVER: "com.mysql.jdbc.Driver"
+      JDBC_URL: "jdbc:mysql://mysql:3306/solo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC" #此处，因为solo跟mysql同为docker容器，所以可以直接使用容器名 + 容器端口来访问
+    command: --listen_port=80 --server_scheme=http --server_host=www.lovejzj.com #按照solo官方要求，在solo启动之初，配置solo的域名、端口，如果是本地测试的话，将host改为localhost即可
